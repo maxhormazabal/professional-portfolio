@@ -323,3 +323,33 @@ h6,
     padding: 0;
     list-style-type: none;
 }
+
+.contact-rrss{
+    display:flex ;
+    justify-content: space-around;
+    
+}
+
+.contact-rrss a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 30px;
+    padding: 30px;
+    font-size: 30px;
+    background-color: $primary;
+    color: $light;
+}
+
+.contact-rrss a:hover{
+    background-color: $light;
+    color: $dark;
+}
+
+// movil
+
+@media (max-width: 330px) {
+    .special-title{
+        display: none;
+    }
+  }

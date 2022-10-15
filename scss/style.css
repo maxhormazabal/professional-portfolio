@@ -9577,4 +9577,31 @@ h6,
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.contact-rrss {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-rrss a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 30px;
+  padding: 30px;
+  font-size: 30px;
+  background-color: #296fb5;
+  color: #ffffff;
+}
+
+.contact-rrss a:hover {
+  background-color: #ffffff;
+  color: #343a40;
+}
+
+@media (max-width: 330px) {
+  .special-title {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
