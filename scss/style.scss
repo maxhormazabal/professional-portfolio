@@ -30,6 +30,10 @@ h1,
     font-family: 'Roboto', sans-serif !important;
 }
 
+.cover-title{
+    font-family: 'Roboto', sans-serif !important;
+}
+
 h2,
 h3,
 .font-weight-bold {
@@ -69,6 +73,10 @@ h6,
 .flag{
     height: 15px;
     padding-left: 10px;
+}
+
+.flag-container{
+    margin-left: 20px;
 }
 
 .btn-social {
@@ -348,8 +356,45 @@ h6,
 
 // movil
 
-@media (max-width: 330px) {
+@media (max-width: 500px) {
+    .special-title{
+        font-size: 60px;
+    }
+    .download{
+        flex-direction: column;
+    }
+
+    .download a{
+        width: 80%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .flag-container{
+        margin-left: 0px;
+    }
+    
+
+    .flag{
+        padding-left: 20px;
+    }
+  }
+
+  @media (max-width: 330px) {
     .special-title{
         display: none;
+    }
+    .special-subtitle{
+        padding-bottom: 40px;
+    }
+
+    .cover-title{
+        font-size: 30px;
+    }
+
+    .contact-rrss a{
+        justify-content: space-around;
+        margin: 0px;
+        font-size: 25px;
     }
   }
