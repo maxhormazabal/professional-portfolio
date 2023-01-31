@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        #resultado {
+          font-weight:  bold;
+          font-size:  1.2rem;
+          text-align: center;
+        }
+
+        input[type="number"] {
+        text-align: center;
+        border-radius: 10px;
+        border: 1px solid rgb(48, 78, 161)
+        }
+    </style>
+
+</head>
+<body>
+
+    <main>
+        <h1 class="display-5 fw-bold text-center">Heart Disease Prediction</h1>
+
+        <div class="container mt-5">
+            <div class="row">
+              <div class="col-12 col-md-4 offset-md-4">
+                <form>
+                  <div class="mb-3">
+                    <!-- Chest Pain -->
+                    <label for="">Chest Pain Level: <span id="lbl-cp">0</span></label>
+                    <input type="number" class="form-range" value="0" min="0" max="3" id="cp" oninput="actualizarData();">
+
+                    <!-- Thalach -->
+                    <label for="">Maximum heart rate achieved: <span id="lbl-thalach">0</span></label>
+                    <input type="range" class="form-range" min="0" max="202" id="thalach" oninput="actualizarData();">
+
+                    <!-- Exercise induced angina -->
+                    <label for="">Exercise induced angina: <span id="lbl-exang">0</span></label>
+                    <input type="number" class="form-range" value="0" min="0" max="1" id="exang" oninput="actualizarData();">
+
+                    <!-- Depression induced by exercise relative to rest -->
+                    <label for="">Depression induced by exercise: <span id="lbl-oldpeak">0</span></label>
+                    <input type="range" class="form-range" min="0" max="6" id="oldpeak" oninput="actualizarData();">
+
+                    <!-- number of major vessels colored by flourosopy -->
+                    <label for="">Number of major vessels colored by flourosopy: <span id="lbl-ca">0</span></label>
+                    <input type="number" class="form-range" value="0" min="0" max="4" id="ca" oninput="actualizarData();">
+
+                    <div class="form-text">¿Tienes riesgo de padecer un accidente cardiovascular?</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="celsius" class="form-label">Resultado</label>
+                    <div id="resultado">
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+    <script type="text/javascript">
+
+        var modelo = null;
+  
+        //Cargar modelo
+        (async () => {
+            console.log("Cargando modelo...");
+            modelo = await tf.loadLayersModel("../../models/heart-disease/model.json");
+            console.log("Modelo cargado...");
+        })();
+  
+        function actualizarData() {
+          var cp = document.getElementById("cp").value;
+          document.getElementById("lbl-cp").innerHTML=cp;
+          var thalach = document.getElementById("thalach").value;
+          document.getElementById("lbl-thalach").innerHTML=thalach;
+          var exang = document.getElementById("exang").value;
+          document.getElementById("lbl-exang").innerHTML=exang;
+          var oldpeak = document.getElementById("oldpeak").value;
+          document.getElementById("lbl-oldpeak").innerHTML=oldpeak;
+          var ca = document.getElementById("ca").value;
+          document.getElementById("lbl-ca").innerHTML=ca;
+          if (modelo != null) {
+            // var tensor = tf.tensor1d([parseInt(celsius)]);
+            var tensor = tf.tensor([parseInt(cp),parseInt(thalach),parseInt(exang),parseInt(oldpeak),parseInt(ca)],[1,5]);
+            // var tensor = tf.tensor1d([0,parseInt(celsius),0,1.0,2]);
+            var prediccion = modelo.predict(tensor).dataSync();
+            if (prediccion>=0.5)
+                res_prediccion = "Si :("
+            else if (prediccion < 0.5)
+                res_prediccion = "No  :D"
+            document.getElementById("resultado").innerHTML = res_prediccion;
+          } else {
+            document.getElementById("resultado").innerHTML = "Error desconocido";
+          }
+        }
+      </script>
+</body>
+</html>
