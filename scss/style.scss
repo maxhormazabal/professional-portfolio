@@ -435,3 +435,30 @@ h6,
     margin-top: 10px;
     text-align: justify;
   }
+
+  .blog-image{
+    transition: all 0.3s ease-in-out;
+  }
+
+  .blog-image:hover{
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  

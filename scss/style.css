@@ -9677,4 +9677,46 @@ h6,
 .medium-post-text {
   margin-top: 10px;
   text-align: justify;
+}
+
+.blog-image {
+  transition: all 0.3s ease-in-out;
+}
+
+.blog-image:hover {
+  transform: scale(1.05);
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=style.css.map */
